@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterEpisodeCell: UICollectionViewCell {
+final class CharacterEpisodeCell: UICollectionViewCell {
     static let cellIdentifer = "CharacterEpisodeCell"
 
     private let seasonLabel: UILabel = {
@@ -76,14 +76,13 @@ class CharacterEpisodeCell: UICollectionViewCell {
         airDateLabel.text = nil
     }
 
-//    public func configure(with viewModel: RMCharacterEpisodeCollectionViewCellViewModel) {
-//        viewModel.registerForData { [weak self] data in
-//            // Main Queue
-//            self?.nameLabel.text = data.name
-//            self?.seasonLabel.text = "Episode "+data.episode
-//            self?.airDateLabel.text = "Aired on "+data.air_date
-//        }
-//        viewModel.fetchEpisode()
-//        contentView.layer.borderColor = viewModel.borderColor.cgColor
+  public func configure(with viewModel: CharacterEpisodeCellViewModel) {
+
+//    Task {
+//      let data = try? await viewModel.fetchEpisode()
+//      nameLabel.text = data?.name ?? ""
+//      seasonLabel.text = "Episode "+(data?.episode ?? "")
+//      airDateLabel.text = "Aired on "+(data?.air_date ?? "")
 //    }
+  }
 }

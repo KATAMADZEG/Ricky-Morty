@@ -14,7 +14,7 @@ final class CharactersInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 15, weight: .light)
         return label
     }()
 
@@ -22,7 +22,7 @@ final class CharactersInfoCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .systemFont(ofSize: 13, weight: .medium)
         return label
     }()
 
@@ -61,7 +61,7 @@ final class CharactersInfoCell: UICollectionViewCell {
             titleContainerView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             titleContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             titleContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33),
+            titleContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.28),
 
             titleLabel.leftAnchor.constraint(equalTo: titleContainerView.leftAnchor),
             titleLabel.rightAnchor.constraint(equalTo: titleContainerView.rightAnchor),
@@ -89,11 +89,11 @@ final class CharactersInfoCell: UICollectionViewCell {
         titleLabel.textColor = .label
     }
 
-//    public func configure(with viewModel: RMCharacterInfoCollectionViewCellViewModel) {
-//        titleLabel.text = viewModel.title
-//        valueLabel.text = viewModel.displayValue
-//        iconImageView.image = viewModel.iconImage
-//        iconImageView.tintColor = viewModel.tintColor
-//        titleLabel.textColor = viewModel.tintColor
-//    }
+    public func configure(with viewModel: CharacterInfoCellViewModel) {
+        titleLabel.text = viewModel.title
+        valueLabel.text = viewModel.displayValue
+        iconImageView.image = viewModel.iconImage
+        iconImageView.tintColor = viewModel.tintColor
+        titleLabel.textColor = viewModel.tintColor
+    }
 }

@@ -24,11 +24,14 @@ final class CharactersDetailVC: UIViewController {
   //MARK: - LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     view.backgroundColor = .white
     collectionView = createCollectionView()
+    view.addSubview(collectionView!)
+    addConstraints()
     collectionView?.delegate = self
     collectionView?.dataSource = self
-    addConstraints()
+
   }
   //MARK: - Helpers
   private func createCollectionView() -> UICollectionView {
@@ -42,7 +45,7 @@ final class CharactersDetailVC: UIViewController {
                               forCellWithReuseIdentifier: CharactersInfoCell.cellIdentifer)
       collectionView.register(CharacterEpisodeCell.self,
                               forCellWithReuseIdentifier: CharacterEpisodeCell.cellIdentifer)
-      collectionView.translatesAutoresizingMaskIntoConstraints = false
+
       return collectionView
   }
 
@@ -59,10 +62,8 @@ final class CharactersDetailVC: UIViewController {
   }
 
   private func addConstraints() {
-    guard let collectionView = collectionView else {
-      return
-    }
-
+    guard let collectionView = collectionView else { return }
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       collectionView.topAnchor.constraint(equalTo: view.topAnchor),
       collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -84,9 +85,8 @@ extension CharactersDetailVC: UICollectionViewDelegate, UICollectionViewDataSour
           return 1
       case .information(let viewModels):
           return viewModels.count
-      case .episodes: //droebit
-        return 1
-//          return viewModels.count
+      case .episodes(let viewModels):
+        return viewModels.count
       }
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -99,7 +99,7 @@ extension CharactersDetailVC: UICollectionViewDelegate, UICollectionViewDataSour
           ) as? CharactersPhotoCell else {
               fatalError()
           }
-//          cell.configure(with: viewModel)
+//          cell.
           return cell
       case .information(let viewModels):
           guard let cell = collectionView.dequeueReusableCell(
@@ -108,17 +108,17 @@ extension CharactersDetailVC: UICollectionViewDelegate, UICollectionViewDataSour
           ) as? CharactersInfoCell else {
               fatalError()
           }
-//          cell.configure(with: viewModels[indexPath.row])
+          cell.configure(with: viewModels[indexPath.row])
           return cell
-      case .episodes: // droebittt
+      case .episodes(let viewModels):
           guard let cell = collectionView.dequeueReusableCell(
               withReuseIdentifier: CharacterEpisodeCell.cellIdentifer,
               for: indexPath
           ) as? CharacterEpisodeCell else {
               fatalError()
           }
-//          let viewModel = viewModels[indexPath.row]
-//          cell.configure(with: viewModel)
+          let viewModel = viewModels[indexPath.row]
+          cell.configure(with: viewModel)
           return cell
       }
   }

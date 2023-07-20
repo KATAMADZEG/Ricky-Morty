@@ -5,7 +5,7 @@
 //  Created by Giorgi Katamadze on 7/19/23.
 //
 
-import Foundation
+import UIKit
 
 protocol CharactersViewModelType {
   var input: CharactersViewModelInput { get }
@@ -27,10 +27,11 @@ final class CharactersViewModel: CharactersViewModelType {
   
   var characters: CharactersModel?
   
-  var shouldShowLoadMoreIndicator: Bool { 
+  var shouldShowLoadMoreIndicator: Bool {
     return characters?.info?.next != nil
   }
   var isLoadingMoreCharacters = false
+  var characterImage: UIImage? = nil
   
 }
 //MARK: - CharactersViewModelInput
