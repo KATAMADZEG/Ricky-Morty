@@ -71,9 +71,6 @@ extension CharactersVC: CharactersViewModelOutput {
     switch response {
     case .success(let responseModel):
       let moreResults = responseModel.results
-      let originalCount = viewModel.characters?.results.count
-      let newCount = moreResults.count
-      let total = (originalCount!) + (newCount)
       viewModel.characters?.results.append(contentsOf: moreResults)
       DispatchQueue.main.async { [self] in
         viewModel.isLoadingMoreCharacters = false

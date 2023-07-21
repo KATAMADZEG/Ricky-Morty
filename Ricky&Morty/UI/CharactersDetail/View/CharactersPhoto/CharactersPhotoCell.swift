@@ -42,16 +42,11 @@ final class CharactersPhotoCell: UICollectionViewCell {
         imageView.image = nil
     }
 
-//    public func configure(with viewModel: RMCharacterPhotoCollectionViewCellViewModel) {
-//        viewModel.fetchImage { [weak self] result in
-//            switch result {
-//            case .success(let data):
-//                DispatchQueue.main.async {
-//                    self?.imageView.image = UIImage(data: data)
-//                }
-//            case .failure:
-//                break
-//            }
-//        }
-//    }
+    public func configure(with viewModel: CharacterPhotoCellViewModel) {
+
+        Task {
+            let image = try? await viewModel.fetchImage()
+            imageView.image = image
+        }
+    }
 }

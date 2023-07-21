@@ -77,12 +77,16 @@ final class CharacterEpisodeCell: UICollectionViewCell {
     }
 
   public func configure(with viewModel: CharacterEpisodeCellViewModel) {
-
-//    Task {
-//      let data = try? await viewModel.fetchEpisode()
-//      nameLabel.text = data?.name ?? ""
-//      seasonLabel.text = "Episode "+(data?.episode ?? "")
-//      airDateLabel.text = "Aired on "+(data?.air_date ?? "")
-//    }
+      viewModel.registerForData { [weak self] data in
+          DispatchQueue.main.async {
+              self?.nameLabel.text = data.name
+              self?.seasonLabel.text = "Episode "+data.episode
+              self?.airDateLabel.text = "Aired on "+data.air_date
+          }
+      }
+      Task {
+          await viewModel.fetchEpisode() 
+      }
+      
   }
 }
