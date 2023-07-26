@@ -77,6 +77,7 @@ final class CharacterEpisodeCell: UICollectionViewCell {
     }
 
   public func configure(with viewModel: CharacterEpisodeCellViewModel) {
+      
       viewModel.registerForData { [weak self] data in
           DispatchQueue.main.async {
               self?.nameLabel.text = data.name

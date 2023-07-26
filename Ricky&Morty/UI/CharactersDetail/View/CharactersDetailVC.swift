@@ -26,7 +26,7 @@ final class CharactersDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         collectionView = createCollectionView()
         view.addSubview(collectionView!)
         addConstraints()
@@ -119,8 +119,22 @@ extension CharactersDetailVC: UICollectionViewDelegate, UICollectionViewDataSour
                 fatalError()
             }
             let viewModel = viewModels[indexPath.row]
+            
             cell.configure(with: viewModel)
             return cell
         }
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sectionType = viewModel.sections[indexPath.section]
+        switch sectionType {
+        case .photo, .information:
+            break
+        case .episodes:
+            
+            let episodeUrl = viewModel.episodes[indexPath.row]
+            let vc = EpisodeDetailsVC(url: episodeUrl)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
+

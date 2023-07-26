@@ -110,6 +110,4 @@ final class RequestApi {
 // MARK: - Request convenience
 extension RequestApi {
   static let listCharactersRequests = RequestApi(endpoint: .character)
-  static let listEpisodesRequest = RequestApi(endpoint: .episode)
-  static let listLocationsRequest = RequestApi(endpoint: .location)
 }

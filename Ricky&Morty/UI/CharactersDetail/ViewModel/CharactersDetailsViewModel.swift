@@ -11,6 +11,9 @@ final class CharactersDetailsViewModel {
 
     private let results: Location
     
+    public var episodes: [String] {
+        results.episode ?? []
+    }
     enum SectionType {
         case photo(viewModel: CharacterPhotoCellViewModel)
         case information(viewModel: [CharacterInfoCellViewModel])
